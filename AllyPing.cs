@@ -44,8 +44,10 @@ namespace AllyPing {
                         if (leader.characterBody.isPlayerControlled) {
                             PingerController p = null; //leader.characterBody.master.GetComponent<PingerController>(); 
                             foreach (PlayerCharacterMasterController item in PlayerCharacterMasterController.instances) {
-                                if (item.master.GetBody().netId == leader.characterBody.netId) {
-                                    p = (PingerController) pingerController.GetValue(item);
+                                if (item.master.alive) {
+                                    if (item.master.GetBody().GetUserName() == leader.characterBody.GetUserName()) {
+                                        p = (PingerController)pingerController.GetValue(item);
+                                    }
                                 }
                             }
                             if (p != null) {
